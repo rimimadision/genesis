@@ -6,6 +6,7 @@
 #include <sstream>
 #include "rdma/rdma_config.h"
 
+namespace rdma {
 
 std::string read_file(const std::string& file_name) {
     std::ifstream file(file_name);
@@ -70,3 +71,5 @@ std::shared_ptr<Machine_Info> parse_rdma_config(const std::string& file_name) {
 
     return head;
 }
+
+} // namespace rdma

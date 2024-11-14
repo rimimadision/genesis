@@ -4,6 +4,8 @@
 #include <memory>
 #include <string>
 
+namespace rdma {
+
 struct Machine_Info {
     std::string ip;
     std::string device_name;
@@ -15,5 +17,7 @@ struct Machine_Info {
 std::string read_file(const std::string& file_name);
 std::string get_value(const std::string& json, const std::string& key);
 std::shared_ptr<Machine_Info> parse_rdma_config(const std::string& file_name);
+
+} // namespace rdma
 
 #endif // RDMA_CONFIG_H

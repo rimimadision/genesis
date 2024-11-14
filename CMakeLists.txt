@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 
 project(genesis)
 
@@ -15,5 +15,13 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
     target_link_libraries(${TEST_NAME} ${PROJECT_NAME})
 endforeach()
 
-set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build." FORCE)
-set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "RelWithDebInfo")
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DCMAKE_BUILD_TYPE=1)
+else()
+    add_definitions(-DCMAKE_BUILD_TYPE=2)
+endif()
+
