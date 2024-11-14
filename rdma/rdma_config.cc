@@ -6,9 +6,9 @@
 #include <sstream>
 #include "rdma/rdma_config.h"
 
-namespace rdma {
+namespace rdma{
 
-std::string read_file(const std::string& file_name) {
+static std::string read_file(const std::string& file_name) {
     std::ifstream file(file_name);
     if (!file.is_open()) {
         throw std::runtime_error("Could not open file");
@@ -18,7 +18,7 @@ std::string read_file(const std::string& file_name) {
     return buffer.str();
 }
 
-std::string get_value(const std::string& json, const std::string& key) {
+static std::string get_value(const std::string& json, const std::string& key) {
     auto start = json.find("\"" + key + "\":");
     if (start == std::string::npos) return "";
     start = json.find(":", start) + 1;
@@ -34,11 +34,11 @@ std::string get_value(const std::string& json, const std::string& key) {
     return value;
 }
 
-std::shared_ptr<Machine_Info> parse_rdma_config(const std::string& file_name) {
+std::shared_ptr<Node_Info> parse_rdma_config(const std::string& file_name) {
     std::string json = read_file(file_name);
 
-    std::shared_ptr<Machine_Info> head = nullptr;
-    std::shared_ptr<Machine_Info> current = nullptr;
+    std::shared_ptr<Node_Info> head = nullptr;
+    std::shared_ptr<Node_Info> current = nullptr;
 
     auto machines_start = json.find("\"machines\": [");
     if (machines_start == std::string::npos) return nullptr;
@@ -53,11 +53,11 @@ std::shared_ptr<Machine_Info> parse_rdma_config(const std::string& file_name) {
         if (machine_json.find("}") == std::string::npos) continue;
         machine_json = machine_json.substr(0, machine_json.find("}") + 1);
 
-        auto machine_info = std::make_shared<Machine_Info>();
+        auto machine_info = std::make_shared<Node_Info>();
         machine_info->ip = get_value(machine_json, "ip");
         machine_info->device_name = get_value(machine_json, "device_name");
-        machine_info->rdma_port = std::stoi(get_value(machine_json, "rdma_port"));
-        machine_info->rdma_index = std::stoi(get_value(machine_json, "index"));
+        machine_info->ib_port = std::stoi(get_value(machine_json, "rdma_port"));
+        machine_info->gid_idx = std::stoi(get_value(machine_json, "index"));
         machine_info->next = nullptr;
 
         if (!head) {

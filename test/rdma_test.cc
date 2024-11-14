@@ -5,11 +5,11 @@
 
 int main() {
     try {
-        auto machines = rdma::parse_rdma_config("/home/hongkang/genesis/rdma_config.json");
+        auto machines = rdma::parse_rdma_config("rdma_config.json");
         auto current = machines;
         while (current) {
             std::cout << "IP:" << current->ip << ", Device:" << current->device_name
-                      << ", RDMA Port:" << current->rdma_port << ", Index:" << current->rdma_index << std::endl;
+                      << ", RDMA Port:" << current->ib_port << ", Index:" << current->gid_idx << std::endl;
             current = current->next;
         }
     } catch (const std::exception& e) {

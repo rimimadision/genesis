@@ -12,14 +12,14 @@ enum class OutputType {
     File
 };
 
-#define DEBUG_TYPE 1
-#define RELEASE_TYPE 2
+#define DEBUG_BUILD_TYPE 1
+#define RELEASE_BUILD_TYPE 2
 
 // extern OutputType debug_output_type;
 
 static inline void debug(const char* format, ...) {
 #ifdef CMAKE_BUILD_TYPE
-#if CMAKE_BUILD_TYPE == DEBUG_TYPE
+#if CMAKE_BUILD_TYPE == DEBUG_BUILD_TYPE
     va_list args;
     va_start(args, format);
 
@@ -37,7 +37,7 @@ static inline void debug(const char* format, ...) {
     //     outfile.close();
     // }
     // }
-#elif CMAKE_BUILD_TYPE == RELEASE_TYPE
+#elif CMAKE_BUILD_TYPE == RELEASE_BUILD_TYPE
     return;
 #endif
 #endif
