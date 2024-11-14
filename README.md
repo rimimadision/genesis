@@ -1,6 +1,6 @@
-# Genesis
+# genesis
 
-The Genesis is a toolkit designed to provide a range of commonly used functionalities for high-performance computing and data processing. The library includes the following features:
+The genesis is a toolkit designed to provide a range of commonly used functionalities for high-performance computing and data processing. The library includes the following features:
 
 - **RDMA**: Framework for RDMA.
 - **EC**: Rewarp Intel Storage Acceleration Library (isa-l).

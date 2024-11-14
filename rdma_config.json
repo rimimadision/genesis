@@ -1,0 +1,44 @@
+{
+    "cluster_info": {
+        "machine_count": 6,
+        "roce_version": 2,
+        "machines": [
+            {
+                "ip": "10.0.0.1",
+                "device_name": "mlx5_0",
+                "rdma_port": 1,
+                "index": 0
+            },
+            {
+                "ip": "10.0.0.2",
+                "device_name": "mlx5_1",
+                "rdma_port": 1,
+                "index": 1
+            },
+            {
+                "ip": "10.0.0.3",
+                "device_name": "mlx5_2",
+                "rdma_port": 1,
+                "index": 2
+            },
+            {
+                "ip": "10.0.0.4",
+                "device_name": "mlx5_3",
+                "rdma_port": 1,
+                "index": 3
+            },
+            {
+                "ip": "10.0.0.5",
+                "device_name": "mlx5_4",
+                "rdma_port": 1,
+                "index": 4
+            },
+            {
+                "ip": "10.0.0.6",
+                "device_name": "mlx5_5",
+                "rdma_port": 1,
+                "index": 5
+            }
+        ]
+    }
+}
